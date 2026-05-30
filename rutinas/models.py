@@ -16,3 +16,33 @@ class rutinas(models.Model):
     class Meta:
         db_table = '"rutinas"."rutinas"'
         managed = False
+
+class grupos_musculares(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=80)
+    descripcion = models.TextField(db_column='descripcion')
+    activo = models.BooleanField()
+    fecha_modificacion = models.DateTimeField(db_column='Fecha_modificacion')
+    fecha_creacion = models.DateTimeField(db_column='Fecha_creacion')
+    
+    class Meta:
+        managed = False
+        db_table = '"rutinas"."grupos_musculares"'
+        
+class ejercicios(models.Model):
+    id = models.IntegerField(primary_key=True)
+    grupo_muscular = models.ForeignKey(grupos_musculares, on_delete=models.DO_NOTHING, db_column='grupo_muscular_id')
+    nombre = models.CharField(max_length=150)
+    descripcion_corta = models.CharField(max_length=255)
+    descripcion_larga = models.TextField()
+    posicion_inicial = models.TextField()
+    ejecucion = models.TextField()
+    consejos = models.TextField()
+    nivel = models.CharField(max_length=20)
+    activo = models.BooleanField()
+    fecha_modificacion = models.DateTimeField(db_column='Fecha_modificacion')
+    fecha_creacion = models.DateTimeField(db_column='Fecha_creacion')
+
+    class Meta:
+        managed = False
+        db_table = '"rutinas"."ejercicios"'

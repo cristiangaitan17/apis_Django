@@ -1,6 +1,12 @@
-from django.urls import path
-from .views import RutinaListView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import RutinaViewSet, GrupoMuscularViewSet, EjercicioViewSet
+
+router = DefaultRouter()
+router.register(r'rutinas', RutinaViewSet)
+router.register(r'grupos-musculares', GrupoMuscularViewSet)
+router.register(r'ejercicios', EjercicioViewSet)
 
 urlpatterns = [
-    path('rutinas/', RutinaListView.as_view(), name='rutinas-list'),
+    path('', include(router.urls)),
 ]
