@@ -1,9 +1,6 @@
 from rest_framework import serializers
 from .models import Categoria, Producto, Resena, Carrito, CarritoItem, Pedido, PedidoItem
 
-
-# serializadores para cada modelo, con campos de solo lectura para id, fecha_creacion y fecha_modificacion
-
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
@@ -32,13 +29,13 @@ class CarritoItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarritoItem
         fields = '__all__'
-        read_only_fields = ['id', 'fecha_creacion', 'fecha_modificacion']
+        read_only_fields = ['id_carrito', 'fecha_creacion', 'fecha_modificacion']  # ← id_carrito
 
 class PedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pedido
         fields = '__all__'
-        read_only_fields = ['id', 'fecha_creacion', 'fecha_modificacion']
+        read_only_fields = ['id_pedido', 'fecha_creacion', 'fecha_modificacion']  # ← id_pedido
 
 class PedidoItemSerializer(serializers.ModelSerializer):
     class Meta:

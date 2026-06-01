@@ -89,7 +89,7 @@ DATABASES = {
         'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
         'OPTIONS': {
-            'options': f'-c search_path=tienda_schema'
+            'options': f'-c search_path={config("DB_SCHEMA")}'
         }
     }
 }
